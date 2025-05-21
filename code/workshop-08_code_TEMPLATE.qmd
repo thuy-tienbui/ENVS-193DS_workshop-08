@@ -293,7 +293,7 @@ Look at the model summary:
 
 
 
-# 4. Model predictions
+# 5. Model predictions
 
 ```{r model-predictions}
 # INSERT MODEL PREDICTIONS CODE HERE
@@ -301,7 +301,7 @@ Look at the model summary:
 
 Before plotting, LOOK AT THE PREDICTION DATA FRAME using `View(model4_predictions)` or by clicking on the object in the Environment.
 
-# 5. Final figure
+# 6. Final figure
 
 ```{r final-figure}
 #| fig-width: 12

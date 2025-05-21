@@ -124,8 +124,8 @@ window.Quarto = {
   <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection">Model selection</a></li>
   <li><a href="#stop-and-think-what-does-this-model-mean" id="toc-stop-and-think-what-does-this-model-mean" class="nav-link" data-scroll-target="#stop-and-think-what-does-this-model-mean">Stop and think: what does this model mean?</a></li>
   </ul></li>
-  <li><a href="#model-predictions" id="toc-model-predictions" class="nav-link" data-scroll-target="#model-predictions">4. Model predictions</a></li>
-  <li><a href="#final-figure" id="toc-final-figure" class="nav-link" data-scroll-target="#final-figure">5. Final figure</a></li>
+  <li><a href="#model-predictions" id="toc-model-predictions" class="nav-link" data-scroll-target="#model-predictions">5. Model predictions</a></li>
+  <li><a href="#final-figure" id="toc-final-figure" class="nav-link" data-scroll-target="#final-figure">6. Final figure</a></li>
   </ul>
 </nav>
 </div>
@@ -316,16 +316,16 @@ window.Quarto = {
 <pre><code># A tibble: 10 × 4
    species_name               water_treatment    sla total_g
    &lt;fct&gt;                      &lt;fct&gt;            &lt;dbl&gt;   &lt;dbl&gt;
- 1 Eschscholzia californica   Drought stressed  105.   0.231
- 2 Lotus scoparius            Drought stressed  107.   0.159
- 3 Stipa pulchra              Well watered      162.   0.355
- 4 Stipa pulchra              Well watered      234.   0.545
- 5 Encelia californica        Well watered      222.   0.352
- 6 Penstemon centranthifolius Drought stressed  175.   0.188
- 7 Penstemon centranthifolius Drought stressed  146.   0.126
- 8 Salvia leucophylla         Drought stressed  110.   0.185
- 9 Grindelia camporum         Drought stressed  171.   0.250
-10 Eschscholzia californica   Well watered      116.   0.423</code></pre>
+ 1 Grindelia camporum         Well watered     191.   0.484 
+ 2 Grindelia camporum         Well watered     221.   0.473 
+ 3 Grindelia camporum         Drought stressed 167.   0.314 
+ 4 Lotus scoparius            Drought stressed  99.8  0.0734
+ 5 Lotus scoparius            Well watered     123.   0.182 
+ 6 Encelia californica        Drought stressed 171.   0.259 
+ 7 Grindelia camporum         Drought stressed 113.   0.413 
+ 8 Encelia californica        Drought stressed 192.   0.261 
+ 9 Lotus scoparius            Well watered     106.   0.185 
+10 Penstemon centranthifolius Drought stressed 175.   0.188 </code></pre>
 </div>
 </div>
 </section>
@@ -690,7 +690,7 @@ F-statistic: 27.08 on 7 and 62 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 </section>
 <section id="model-predictions" class="level1">
-<h1>4. Model predictions</h1>
+<h1>5. Model predictions</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>model4_predictions <span class="ot">&lt;-</span> <span class="fu">ggpredict</span>(</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  model4, <span class="co"># model object</span></span>
@@ -704,7 +704,7 @@ F-statistic: 27.08 on 7 and 62 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Before plotting, LOOK AT THE PREDICTION DATA FRAME using <code>View(model4_predictions)</code> or by clicking on the object in the Environment.</p>
 </section>
 <section id="final-figure" class="level1">
-<h1>5. Final figure</h1>
+<h1>6. Final figure</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># base layer: ggplot</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using the drought_exp_clean object</span></span>
