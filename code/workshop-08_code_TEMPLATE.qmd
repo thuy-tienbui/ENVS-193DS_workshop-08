@@ -1,0 +1,341 @@
+---
+title: "Workshop 8 TEMPLATE"
+subtitle: "insert your section time here"
+author: "insert your name here"
+date: "insert your name here"
+format:
+  html:
+    toc: true # use this to display a table of contents
+execute:
+  message: false # use this to make sure messages don't show up
+  warning: false # use this to make sure warnings don't show up
+---
+
+Data source: Valliere, Justin; Zhang, Jacqueline; Sharifi, M.; Rundel, Philip (2019). Data from: Can we condition native plants to increase drought tolerance and improve restoration success? [Dataset]. Dryad. [https://doi.org/10.5061/dryad.v0861f7](https://doi.org/10.5061/dryad.v0861f7)  
+
+In this workshop, we will answer the question: How do specific leaf area, water treatment, and species influence plant mass?  
+
+**Specific leaf area** is a continuous variable measured in cm^2^/g.  
+
+**Water treatment** is a categorical variable (i.e. a *factor*) with 2 levels: drought stressed (DS) and well watered (WW).  
+
+**Species** is a categorical variable (again, a *factor*) with 6 levels.  
+
+| Species name                 | Species code | Common name        |
+|------------------------------|--------------|--------------------|
+| _Encelia californica_        | ENCCAL       | Bush sunflower     |  
+| _Eschsholzia californica_    | ESCCAL       | California poppy   | 
+| _Penstemon centranthifolius_ | PENCEN       | Scarlet bugler     | 
+| _Grindelia camporums_        | GRINCAM      | Gumweed            | 
+| _Salvia leucophylla_         | SALLEU       | Purple sage        | 
+| _Stipa pulchra_              | STIPUL       | Purple needlegrass | 
+| _Lotus scoparius_            | LOTSCO       | Deerweed           |
+
+# 1. Set up
+
+```{r packages-and-data}
+# read in your packages here
+library(tidyverse) # general use
+library(here) # file organization
+library(janitor) # cleaning data frames
+library(readxl) # reading excel files
+library(scales) # modifying axis labels
+library(ggeffects) # getting model predictions
+library(MuMIn) # model selection
+
+# read in your data here
+
+```
+
+Storing some colors to use in visualizations, and setting a common `ggplot` theme for all plots:
+
+```{r storing-colors-and-theme}
+# storing colors to use for species
+lotsco_col <- "#E69512"
+pencen_col <- "#D6264F"
+salleu_col <- "#6D397D"
+enccal_col <- "#3A5565"
+stipul_col <- "#3F564F"
+esccal_col <- "#515481"
+gricam_col <- "#6C91BD"
+
+# storing colors to use for water treatments
+ds_col <- "#A62F03"
+ww_col <- "#045CB4"
+
+# storing a ggplot theme (that will be used for all ggplots)
+theme_set(theme_bw())
+```
+
+
+# 2. Clean data
+
+```{r data-cleaning}
+# INSERT COMMENT HERE
+drought_exp_clean <- drought_exp |> # INSERT COMMENT HERE
+  # INSERT COMMENT HERE
+  clean_names() |> 
+  # INSERT COMMENT HERE
+  mutate(species_name = case_match(
+    species,
+    "ENCCAL" ~ "Encelia californica", # bush sunflower
+    "ESCCAL" ~ "Eschscholzia californica", # California poppy
+    "PENCEN" ~ "Penstemon centranthifolius", # Scarlet bugler
+    "GRICAM" ~ "Grindelia camporum", # Gumweed
+    "SALLEU" ~ "Salvia leucophylla", # purple sage
+    "STIPUL" ~ "Stipa pulchra", # purple needlegrass
+    "LOTSCO" ~ "Lotus scoparius" # deerweed
+  )) |> 
+  # INSERT COMMENT HERE
+  mutate(water_treatment = case_match(
+    water,
+    "WW" ~ "Well watered",
+    "DS" ~ "Drought stressed"
+  )) |> 
+  # INSERT COMMENT HERE
+  mutate(species_name = as_factor(species_name),
+         species_name = fct_relevel(species_name,
+                                    "Lotus scoparius",
+                                    "Penstemon centranthifolius",
+                                    "Salvia leucophylla",
+                                    "Encelia californica",
+                                    "Stipa pulchra",
+                                    "Eschscholzia californica",
+                                    "Grindelia camporum")) |> 
+  # INSERT COMMENT HERE
+  mutate(water_treatment = as_factor(water_treatment),
+         water_treatment = fct_relevel(water_treatment,
+                                       "Drought stressed",
+                                       "Well watered")) |> 
+  # INSERT COMMENT HERE
+  select(species_name, water_treatment, sla, total_g)
+```
+
+Double checking that everything worked by checking the structure:
+
+```{r checking-structure}
+str(drought_exp_clean)
+```
+
+And displaying some rows from the data frame:
+
+```{r showing-data-frame-rows}
+slice_sample(
+  drought_exp_clean, # INSERT COMMENT HERE
+  n = 10 # INSERT COMMENT HERE
+)
+```
+
+
+# 3. Visualizing data
+
+## What is the relationship between SLA and total mass?  
+
+```{r sla}
+#| fig-width: 10
+
+# base layer: ggplot
+ggplot(data = drought_exp_clean,
+       aes(x = sla,
+           y = total_g)) +
+  # scatter plot
+  geom_point() +
+  # relabeling axes and adding a title
+  labs(x = expression(Specific~leaf~area~(cm^2/g)),
+       y = "Total mass (g)",
+       title = "INSERT YOUR TITLE HERE")
+```
+
+## What are the differences in total mass between water treatments?
+
+```{r water-treatment}
+#| fig-width: 10
+
+# base layer: ggplot
+ggplot(data = drought_exp_clean,
+       aes(x = water_treatment,
+           y = total_g,
+           color = water_treatment)) +
+  # first layer: jitter
+  geom_jitter(width = 0.1,
+              height = 0,
+              shape = 21,
+              alpha = 0.6) +
+  # adding a summary to calculate mean mass in each water treatment
+  stat_summary(geom = "point",
+               fun = mean,
+               size = 4) +
+  # manually setting colors
+  scale_color_manual(values = c("Well watered" = ww_col,
+                                "Drought stressed" = ds_col)) +
+  # changing axis labels and title
+  labs(x = "Water treatment",
+       y = "Total mass (g)",
+       title = "INSERT YOUR TITLE HERE") +
+  # taking out legend
+  theme(legend.position = "none")
+```
+
+## What are the differences in total mass between species?
+
+```{r species}
+#| fig-width: 10
+
+# base layer: ggplot
+ggplot(data = drought_exp_clean,
+       aes(x = species_name,
+           y = total_g,
+           color = species_name)) +
+  # first layer: jitter
+  geom_jitter(width = 0.1,
+              height = 0,
+              shape = 21,
+              alpha = 0.6) +
+  # summary to calculate mean mass for each species
+  stat_summary(geom = "point",
+               fun = mean,
+               size = 4) +
+  # making sure that axis labels wrap nicely
+  scale_x_discrete(labels = label_wrap(10)) +
+  # setting colors manually
+  scale_color_manual(values = c(
+    "Lotus scoparius" = lotsco_col,
+    "Penstemon centranthifolius" = pencen_col,
+    "Salvia leucophylla" = salleu_col,
+    "Encelia californica" = enccal_col,
+    "Stipa pulchra" = stipul_col,
+    "Eschscholzia californica" = esccal_col,
+    "Grindelia camporum" = gricam_col
+  )) +
+  # labelling axes and title
+  labs(x = "Species",
+       y = "Total mass (g)",
+       title = "INSERT YOUR TITLE HERE") +
+  # getting rid of legend
+  theme(legend.position = "none")
+```
+
+# 4. Fitting models
+
+8 models total:
+
+| Model number | SLA | Water treatment | Species | Predictor list              |  
+|:------------:|:---:|:---------------:|:-------:|-----------------------------|  
+| 0            |     |                 |         | no predictors (null model)  |
+| 1            |  X  |       X         |    X    | all predictors (full model) | 
+| 2            |  X  |       X         |         | SLA and water treatment     |   
+| 3            |  X  |                 |    X    | SLA and species             |    
+| 4            |     |       X         |    X    | water treatment and species |    
+| 5            |  X  |                 |         | SLA                         |    
+| 6            |     |       X         |         | water treatment             |    
+| 7            |     |                 |    X    | species                     |
+
+## Model fitting
+
+```{r model-fitting}
+# model 0: null model
+model0 <- lm(
+  total_g ~ 1, # formula
+  data = drought_exp_clean # data frame
+)
+
+# model 1: all predictors
+# INSERT MODEL CODE HERE
+
+# model 2: SLA and water treatment
+# INSERT MODEL CODE HERE
+
+# model 3: SLA and species
+# INSERT MODEL CODE HERE
+
+# model 4: water treatment and species
+# INSERT MODEL CODE HERE
+
+# model 5: SLA
+# INSERT MODEL CODE HERE
+
+# model 6: water treatment
+# INSERT MODEL CODE HERE
+
+# model 7: species
+# INSERT MODEL CODE HERE
+```
+
+## Model diagnostics
+
+```{r model-diagnostics}
+# INSERT MODEL DIAGNOSTICS CODE HERE
+```
+
+## Model selection
+
+```{r model-selection}
+# INSERT MODEL SELECTION CODE HERE
+```
+
+Look at the model summary:
+
+```{r model-summary}
+# INSERT MODEL SUMMARY CODE HERE
+```
+
+## Stop and think: what does this model mean?  
+
+**What is the best model?**
+
+ 
+
+**How much variation in the response (total mass, in grams) does this model explain?**
+
+
+
+**How do we interpret the effects of the predictors on the response variable (again, total mass in grams)?**
+
+
+
+# 4. Model predictions
+
+```{r model-predictions}
+# INSERT MODEL PREDICTIONS CODE HERE
+```
+
+Before plotting, LOOK AT THE PREDICTION DATA FRAME using `View(model4_predictions)` or by clicking on the object in the Environment.
+
+# 5. Final figure
+
+```{r final-figure}
+#| fig-width: 12
+#| fig-height: 4
+
+# base layer: ggplot
+# using the drought_exp_clean object
+ggplot(data = drought_exp_clean,
+       aes(x = water_treatment,
+           y = total_g,
+           color = water_treatment)) +
+  # first layer: jitter showing individual observations
+  geom_jitter(width = 0.1,
+              height = 0,
+              shape = 21,
+              alpha = 0.6) +
+  # second layer: point range showing model predictions
+  # note that this is appropriate because there are only categorical predictors
+  # in the final model
+  geom_pointrange(data = model4_predictions,
+                  aes(y = predicted,
+                      ymin = conf.low,
+                      ymax = conf.high)) +
+  # manually setting colors
+  scale_color_manual(values = c("Well watered" = ww_col,
+                                "Drought stressed" = ds_col)) +
+  # wrapping x-axis labels
+  scale_x_discrete(labels = label_wrap(10)) +
+  # creating different panels for each species
+  facet_wrap(~species_name, nrow = 1) +
+  # labelling x- and y-axis
+  labs(x = "Water treatment",
+       y = "Total mass (g)") +
+  # taking out the legend
+  theme(legend.position = "none")
+```
+
