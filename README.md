@@ -49,4 +49,4 @@ All code is in the `code` folder. The code runs models, generates model predicti
 
 The rendered key is [here](https://an-bui.github.io/ENVS-193DS_workshop-08/code/workshop-08_code_KEY.html).  
 
-You will need to find your own rendered output! Insert a link here.
+The rendered output for my personal template is [here](https://an-bui.github.io/ENVS-193DS_workshop-08/code/workshop-08_code_TEMPLATE.html).
