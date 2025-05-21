@@ -10,6 +10,20 @@ The published paper is: Valliere J. M., J. Zhang, M. R. Sharifi, and P. W. Runde
 
 This repository is for demonstrating fitting models with categorical and continuous predictors and model selection.
 
+### Packages
+
+Make sure you have these installed before workshop!
+
+```
+library(tidyverse) # general use
+library(here) # file organization
+library(janitor) # cleaning data frames
+library(readxl) # reading excel files
+library(scales) # modifying axis labels
+library(ggeffects) # getting model predictions
+library(MuMIn) # model selection
+```
+
 ## Data and file information
 
 File structure:
