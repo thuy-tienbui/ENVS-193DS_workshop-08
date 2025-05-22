@@ -9,6 +9,8 @@ execute:
   warning: false # use this to make sure warnings don't show up
 ---
 
+Today we're going to be looking at plant data. This came from a study that tested the restoration success of nursery-grown seedlings. Their main question was whether plants could be conditioned to be more drought tolerant to improve survival rates when transplanted from nurseries. They did this by manipulating water treatments so you will see a category for drought stressed and well watered in the data.
+
 Data source: Valliere, Justin; Zhang, Jacqueline; Sharifi, M.; Rundel, Philip (2019). Data from: Can we condition native plants to increase drought tolerance and improve restoration success? \[Dataset\]. Dryad. <https://doi.org/10.5061/dryad.v0861f7>
 
 In this workshop, we will answer the question: How do specific leaf area, water treatment, and species influence plant mass?
