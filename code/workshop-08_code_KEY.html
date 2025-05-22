@@ -156,6 +156,7 @@ window.Quarto = {
 </header>
 
 
+<p>Today we’re going to be looking at plant data. This came from a study that tested the restoration success of nursery-grown seedlings. Their main question was whether plants could be conditioned to be more drought tolerant to improve survival rates when transplanted from nurseries. They did this by manipulating water treatments so you will see a category for drought stressed and well watered in the data.</p>
 <p>Data source: Valliere, Justin; Zhang, Jacqueline; Sharifi, M.; Rundel, Philip (2019). Data from: Can we condition native plants to increase drought tolerance and improve restoration success? [Dataset]. Dryad. <a href="https://doi.org/10.5061/dryad.v0861f7" class="uri">https://doi.org/10.5061/dryad.v0861f7</a></p>
 <p>In this workshop, we will answer the question: How do specific leaf area, water treatment, and species influence plant mass?</p>
 <p><strong>Specific leaf area</strong> is a continuous variable measured in cm<sup>2</sup>/g.</p>
@@ -310,16 +311,16 @@ window.Quarto = {
 <pre><code># A tibble: 10 × 4
    species_name               water_treatment    sla total_g
    &lt;fct&gt;                      &lt;fct&gt;            &lt;dbl&gt;   &lt;dbl&gt;
- 1 Salvia leucophylla         Drought stressed  96.1  0.278 
- 2 Stipa pulchra              Well watered     162.   0.355 
- 3 Salvia leucophylla         Well watered      99.7  0.241 
- 4 Penstemon centranthifolius Drought stressed 143.   0.0881
- 5 Encelia californica        Drought stressed 161.   0.273 
- 6 Salvia leucophylla         Drought stressed 110.   0.185 
- 7 Eschscholzia californica   Drought stressed 130.   0.157 
- 8 Lotus scoparius            Drought stressed  90.9  0.0796
- 9 Stipa pulchra              Drought stressed 131.   0.301 
-10 Salvia leucophylla         Drought stressed  77.6  0.186 </code></pre>
+ 1 Encelia californica        Drought stressed 171.    0.259
+ 2 Grindelia camporum         Well watered     191.    0.484
+ 3 Penstemon centranthifolius Well watered     165.    0.197
+ 4 Stipa pulchra              Well watered     234.    0.545
+ 5 Salvia leucophylla         Drought stressed  99.7   0.227
+ 6 Salvia leucophylla         Well watered      96.2   0.232
+ 7 Salvia leucophylla         Well watered     127.    0.258
+ 8 Lotus scoparius            Well watered     106.    0.185
+ 9 Stipa pulchra              Drought stressed 176.    0.181
+10 Eschscholzia californica   Well watered     116.    0.423</code></pre>
 </div>
 </div>
 <p>Now we can commit our changes. Commit message: “edited subititle, author, date info and added comments to cleaning code.” Go to github and refresh. Should see most recent change.</p>
