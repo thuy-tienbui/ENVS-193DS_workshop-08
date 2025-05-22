@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.552">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="insert your name here">
+<meta name="dcterms.date" content="2025-05-21">
 
 <title>Workshop 8 KEY</title>
 <style>
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -64,12 +64,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="workshop-08_code_KEY_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="workshop-08_code_KEY_files/libs/quarto-html/anchor.min.js"></script>
 <link href="workshop-08_code_KEY_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="workshop-08_code_KEY_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="workshop-08_code_KEY_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="workshop-08_code_KEY_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="workshop-08_code_KEY_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="workshop-08_code_KEY_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="workshop-08_code_KEY_files/libs/bootstrap/bootstrap-c0367b04c37547644fece4185067e4a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -134,24 +134,17 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Workshop 8 KEY</h1>
-<p class="subtitle lead">insert your section time here</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>insert your name here </p>
-          </div>
-  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Invalid Date</p>
+      <p class="date">May 21, 2025</p>
     </div>
   </div>
   
@@ -163,12 +156,12 @@ window.Quarto = {
 </header>
 
 
-<p>Data source: Valliere, Justin; Zhang, Jacqueline; Sharifi, M.; Rundel, Philip (2019). Data from: Can we condition native plants to increase drought tolerance and improve restoration success? [Dataset]. Dryad. <a href="https://doi.org/10.5061/dryad.v0861f7">https://doi.org/10.5061/dryad.v0861f7</a></p>
+<p>Data source: Valliere, Justin; Zhang, Jacqueline; Sharifi, M.; Rundel, Philip (2019). Data from: Can we condition native plants to increase drought tolerance and improve restoration success? [Dataset]. Dryad. <a href="https://doi.org/10.5061/dryad.v0861f7" class="uri">https://doi.org/10.5061/dryad.v0861f7</a></p>
 <p>In this workshop, we will answer the question: How do specific leaf area, water treatment, and species influence plant mass?</p>
 <p><strong>Specific leaf area</strong> is a continuous variable measured in cm<sup>2</sup>/g.</p>
 <p><strong>Water treatment</strong> is a categorical variable (i.e.&nbsp;a <em>factor</em>) with 2 levels: drought stressed (DS) and well watered (WW).</p>
 <p><strong>Species</strong> is a categorical variable (again, a <em>factor</em>) with 6 levels.</p>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Species name</th>
@@ -257,9 +250,9 @@ window.Quarto = {
 <h1>2. Clean data</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creating a clean data frame</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>drought_exp_clean <span class="ot">&lt;-</span> drought_exp <span class="sc">|&gt;</span> <span class="co"># starting with the drought_exp object</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>drought_exp_clean <span class="ot">&lt;-</span> drought_exp <span class="sc">|&gt;</span> <span class="co"># (delete pipe and run first) starting with the drought_exp object</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># cleaning column names</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">|&gt;</span> <span class="co"># (delete pipe and run first)</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># making a column of full species names</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">species_name =</span> <span class="fu">case_match</span>(</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    species,</span>
@@ -277,23 +270,24 @@ window.Quarto = {
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"WW"</span> <span class="sc">~</span> <span class="st">"Well watered"</span>,</span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DS"</span> <span class="sc">~</span> <span class="st">"Drought stressed"</span></span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span> </span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># making sure that species_name is a factor and ordering levels</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">species_name =</span> <span class="fu">as_factor</span>(species_name),</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>         <span class="at">species_name =</span> <span class="fu">fct_relevel</span>(species_name,</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">"Lotus scoparius"</span>,</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">"Penstemon centranthifolius"</span>,</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">"Salvia leucophylla"</span>,</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">"Encelia californica"</span>,</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">"Stipa pulchra"</span>,</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">"Eschscholzia californica"</span>,</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">"Grindelia camporum"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># making sure that water_treatment is a factor and ordering levels</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">water_treatment =</span> <span class="fu">as_factor</span>(water_treatment),</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>         <span class="at">water_treatment =</span> <span class="fu">fct_relevel</span>(water_treatment,</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">"Drought stressed"</span>,</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">"Well watered"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  <span class="co"># selecting columns</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species_name, water_treatment, sla, total_g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># making sure that species_name is a factor and ordering levels (run str(drought_exp_clean))</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ensure first level should be Lotus scoparius</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">species_name =</span> <span class="fu">as_factor</span>(species_name),</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>         <span class="at">species_name =</span> <span class="fu">fct_relevel</span>(species_name,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">"Lotus scoparius"</span>,</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">"Penstemon centranthifolius"</span>,</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">"Salvia leucophylla"</span>,</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">"Encelia californica"</span>,</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">"Stipa pulchra"</span>,</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">"Eschscholzia californica"</span>,</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">"Grindelia camporum"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># making sure that water_treatment is a factor and ordering levels</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">water_treatment =</span> <span class="fu">as_factor</span>(water_treatment),</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>         <span class="at">water_treatment =</span> <span class="fu">fct_relevel</span>(water_treatment,</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">"Drought stressed"</span>,</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">"Well watered"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="co"># selecting columns</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species_name, water_treatment, sla, total_g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Double checking that everything worked by checking the structure:</p>
 <div class="cell">
@@ -309,30 +303,32 @@ window.Quarto = {
 <p>And displaying some rows from the data frame:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice_sample</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  drought_exp_clean, <span class="co"># data frame</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">10</span> <span class="co"># showing 10 rows</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  drought_exp_clean, <span class="co"># data frame to display</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">10</span> <span class="co"># specifying 10 rows to display</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 4
    species_name               water_treatment    sla total_g
    &lt;fct&gt;                      &lt;fct&gt;            &lt;dbl&gt;   &lt;dbl&gt;
- 1 Grindelia camporum         Well watered     191.   0.484 
- 2 Grindelia camporum         Well watered     221.   0.473 
- 3 Grindelia camporum         Drought stressed 167.   0.314 
- 4 Lotus scoparius            Drought stressed  99.8  0.0734
- 5 Lotus scoparius            Well watered     123.   0.182 
- 6 Encelia californica        Drought stressed 171.   0.259 
- 7 Grindelia camporum         Drought stressed 113.   0.413 
- 8 Encelia californica        Drought stressed 192.   0.261 
- 9 Lotus scoparius            Well watered     106.   0.185 
-10 Penstemon centranthifolius Drought stressed 175.   0.188 </code></pre>
+ 1 Salvia leucophylla         Drought stressed  96.1  0.278 
+ 2 Stipa pulchra              Well watered     162.   0.355 
+ 3 Salvia leucophylla         Well watered      99.7  0.241 
+ 4 Penstemon centranthifolius Drought stressed 143.   0.0881
+ 5 Encelia californica        Drought stressed 161.   0.273 
+ 6 Salvia leucophylla         Drought stressed 110.   0.185 
+ 7 Eschscholzia californica   Drought stressed 130.   0.157 
+ 8 Lotus scoparius            Drought stressed  90.9  0.0796
+ 9 Stipa pulchra              Drought stressed 131.   0.301 
+10 Salvia leucophylla         Drought stressed  77.6  0.186 </code></pre>
 </div>
 </div>
+<p>Now we can commit our changes. Commit message: “edited subititle, author, date info and added comments to cleaning code.” Go to github and refresh. Should see most recent change.</p>
 </section>
 <section id="visualizing-data" class="level1">
 <h1>3. Visualizing data</h1>
 <section id="what-is-the-relationship-between-sla-and-total-mass" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-the-relationship-between-sla-and-total-mass">What is the relationship between SLA and total mass?</h2>
+<p>We are visualizing the relationship between plant mass, our response variable, and our 3 predictor variables which are specific leaf area, water treatments and species. We can first visualize the relationship between specific leaf area and mass by creating a simple scatterplot:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># base layer: ggplot</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> drought_exp_clean,</span>
@@ -352,9 +348,11 @@ window.Quarto = {
 </div>
 </div>
 </div>
+<p>We can see specific leaf area on the x axis and total mass on the y axis. Each point here represents a single plant from the experiment. [Type in the title as seen above].</p>
 </section>
 <section id="what-are-the-differences-in-total-mass-between-water-treatments" class="level2">
 <h2 class="anchored" data-anchor-id="what-are-the-differences-in-total-mass-between-water-treatments">What are the differences in total mass between water treatments?</h2>
+<p>Now we can go to our next figure to visualize the differences in total mass between water treatments. So this will be a standard jitter plot with no jitter along the y axis because we don’t want the points to jitter along the y axis. We’ll also add a summary to calculate the mean mass in each water treatment, so that’s the central tendency that we’re going to be comparing.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># base layer: ggplot</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> drought_exp_clean,</span>
@@ -387,9 +385,11 @@ window.Quarto = {
 </div>
 </div>
 </div>
+<p>Running the code, we can see our plot here. Again, each point represents a single observation which is a single plant from the experiment. The large point represents the mean, so this is the mean mass in drought stress treatments across species across species and across SLA. We’ll say this is somewhere a little higher than 0.2. And the average mass in well-watered treatments is somewhere around 0.34 or 0.35.</p>
 </section>
 <section id="what-are-the-differences-in-total-mass-between-species" class="level2">
 <h2 class="anchored" data-anchor-id="what-are-the-differences-in-total-mass-between-species">What are the differences in total mass between species?</h2>
+<p>Again, we’re going to create a jitter plot and calculate mean mass between each species. We’re also going to add this new function called scale_x_discrete to make sure our axis labels wrap nicer since scientific names can get long.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># base layer: ggplot</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> drought_exp_clean,</span>
@@ -406,7 +406,7 @@ window.Quarto = {
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">fun =</span> mean,</span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># making sure that axis labels wrap nicely</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">label_wrap</span>(<span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">label_wrap</span>(<span class="dv">10</span>)) <span class="sc">+</span> <span class="co"># this function is from the scales package and will wrap based on 10 characters or pixels</span></span>
 <span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># setting colors manually</span></span>
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(</span>
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Lotus scoparius"</span> <span class="ot">=</span> lotsco_col,</span>
@@ -431,12 +431,14 @@ window.Quarto = {
 </div>
 </div>
 </div>
+<p>In the plot you can see that the species are in order of mean mass because we had previously set our factor levels to do that. So back to the question here, from the plot it seems like the species do differ in average mass (FILL IN TITLE). Now we can save our changes and commit and push them to github. Commit message: added titles to visualizations. (Check GitHub).</p>
 </section>
 </section>
 <section id="fitting-models" class="level1">
 <h1>4. Fitting models</h1>
+<p>Here we’re going to fit some models - 8 in total. The null model has no predictors in it, the saturated model is model #1 with all predictors, and then all of the other models have some combination of predictor variables: specific leaf area and water treatment, leaf area and species, water treatment and species, and then each of those predictors individually. When you’re designing models, you should think about what combinations make sense. Usually these are the null, full and the different combinations of predictors.</p>
 <p>8 models total:</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 18%">
 <col style="width: 6%">
@@ -516,14 +518,14 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="model-fitting">Model fitting</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># model 0: null model</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>model0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  total_g <span class="sc">~</span> <span class="dv">1</span>, <span class="co"># formula</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>model0 <span class="ot">&lt;-</span> <span class="fu">lm</span>( <span class="co">#lm is the function for the linear model</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  total_g <span class="sc">~</span> <span class="dv">1</span>, <span class="co"># formula: total grams as a function of 1 - 1 denotes no predictors</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> drought_exp_clean <span class="co"># data frame</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># model 1: all predictors</span></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  total_g <span class="sc">~</span> sla <span class="sc">+</span> water_treatment <span class="sc">+</span> species_name, <span class="co"># formula</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  total_g <span class="sc">~</span> sla <span class="sc">+</span> water_treatment <span class="sc">+</span> species_name, <span class="co"># formula: total grams as a function of all predictor variables</span></span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> drought_exp_clean <span class="co"># data frame</span></span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
@@ -546,23 +548,28 @@ window.Quarto = {
 <span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="co"># model 5: SLA</span></span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>model5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(total_g <span class="sc">~</span> sla,</span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> drought_exp_clean)</span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a><span class="co"># model 6: water treatment</span></span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>model6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(total_g <span class="sc">~</span> water_treatment,</span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> drought_exp_clean)</span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a><span class="co"># model 7: species</span></span>
-<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>model7 <span class="ot">&lt;-</span> <span class="fu">lm</span>(total_g <span class="sc">~</span> species_name,</span>
-<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> drought_exp_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>model5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>  total_g <span class="sc">~</span> sla,</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> drought_exp_clean)</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a><span class="co"># model 6: water treatment</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>model6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>  total_g <span class="sc">~</span> water_treatment,</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> drought_exp_clean)</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="co"># model 7: species</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>model7 <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>  total_g <span class="sc">~</span> species_name,</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> drought_exp_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>This is tedious and you do have to write a lot out but it’s because we are thinking deliberately about which predictors are in each model. So for example, what you are saying in model 6 is that only water treatment predicts plant mass. Similarly, model 5 is saying that only specific leaf area and no other variables are predictors of plant mass. Model 3 adds species as a predictor variable, which is basically saying, if you knew species AND specific leaf area, you could predict plant mass - water treatment doesn’t matter.</p>
 </section>
 <section id="model-diagnostics" class="level2">
 <h2 class="anchored" data-anchor-id="model-diagnostics">Model diagnostics</h2>
+<p>We can the check the diagnostics for all of these models.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)) <span class="co"># creates 2x2 grid to display diagnistic plots</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1) <span class="co"># looks pretty good (no outliers and normal residuals)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -570,7 +577,7 @@ window.Quarto = {
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model2) <span class="co"># looks pretty good</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -578,7 +585,7 @@ window.Quarto = {
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model3) <span class="co"># looks pretty good</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -594,7 +601,7 @@ window.Quarto = {
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model5) <span class="co"># looks pretty good</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -602,7 +609,7 @@ window.Quarto = {
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model6) <span class="co"># looks pretty good</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -610,7 +617,7 @@ window.Quarto = {
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model7)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model7) <span class="co"># looks pretty good</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -622,6 +629,7 @@ window.Quarto = {
 </section>
 <section id="model-selection" class="level2">
 <h2 class="anchored" data-anchor-id="model-selection">Model selection</h2>
+<p>We’re going to now select the best model using the AICc function from the MuMIn package. Inside this function we’ll just list all of the models.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AICc</span>(model1,</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>     model2,</span>
@@ -630,7 +638,7 @@ window.Quarto = {
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>     model5,</span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>     model6,</span>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>     model7,</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>     model0) <span class="sc">|&gt;</span> </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>     model0) <span class="sc">|&gt;</span> <span class="co"># run then pipe to show how to arrange in increasing order to make it easier to glean results </span></span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># arranging output in descending order of AIC</span></span>
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(AICc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -677,29 +685,34 @@ F-statistic: 27.08 on 7 and 62 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reference level for water_treatment: Drought stressed</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># reference level for species: Lotus scoparius</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>If we run this line of code and look at the output, we can figure out what the references are. For categorical variables, you are basically turning your levels and the factors into dummy variables, or indicator/binary variables where each level in the factor receives a unique combination of zeros and ones to represent the level. So the reference level is always the level that doesn’t appear in your summary. So in this case in water treatment, what you see in the water treatment output is well watered. So given the two options of water treatments, the reference for water treatment is drought stressed because it does not appear in the summary (TYPE THE COMMENT). Similarly, you can figure out the reference for species by looking at which species is missing. And that is Lotus scoparius (TYPE THE COMMENT).</p>
 </section>
 <section id="stop-and-think-what-does-this-model-mean" class="level2">
 <h2 class="anchored" data-anchor-id="stop-and-think-what-does-this-model-mean">Stop and think: what does this model mean?</h2>
 <p><strong>What is the best model?</strong></p>
 <p>The best model that predicts total plant mass (g) includes water treatment and species (F(7, 62) = 27.08, p &lt; 0.001, <span class="math inline">\(\alpha\)</span> = 0.05), but not SLA.</p>
+<p><em>[We can use the summary outputs here. 7/62 df ratio, 27.08 f statistic]</em></p>
 <p><strong>How much variation in the response (total mass, in grams) does this model explain?</strong></p>
-<p>This model explained 73% (adjusted R<sup>2</sup>) of the variation in total mass.</p>
+<p>This model explained 73% (adjusted R<sup>2</sup>) of the variation in total mass. <em>[R² is “R^2^”]</em></p>
 <p><strong>How do we interpret the effects of the predictors on the response variable (again, total mass in grams)?</strong></p>
-<p>On average, plant masses in drought stressed conditions were 0.12 <span class="math inline">\(\pm\)</span> 0.04 g less than plant masses in well watered conditions across species.</p>
-<p>Across water treatments, all species have different (and higher) masses than <em>Lotus scoparius</em> except <em>Penstemon centranthifolius</em>.</p>
+<p>On average, plant masses in drought stressed conditions were 0.12 <em>[$\pm$ is plus/minus]</em> 0.02 g less than plant masses in well watered conditions across species. <em>[from water_treatmentWell watered line]</em></p>
+<p>Across water treatments, all species have different (and higher) masses than <em>Lotus scoparius</em> except <em>Penstemon centranthifolius</em>. <em>[Based on model summary where estimate is really small and p-value is not significant]</em></p>
+<p>So we were able to summarize our results in 4 sentences and next we can create our predictions.</p>
 </section>
 </section>
 <section id="model-predictions" class="level1">
 <h1>5. Model predictions</h1>
+<p>So we’re going to generate our predictions for model 4 by first creating a new object.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>model4_predictions <span class="ot">&lt;-</span> <span class="fu">ggpredict</span>(</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  model4, <span class="co"># model object</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"species_name"</span>, <span class="st">"water_treatment"</span>) <span class="co"># predictors</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> </span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># treating this like a regular data frame</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># renaming the columns</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">species_name =</span> x,</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">water_treatment =</span> group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="co"># RUN THIS NOW WITHOUT PIPE - what we should be able to see is a new dataframe with predicted mean, standard error, low and high CI's and the groups drought stressed and well watered</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Next I want to rename the columns to match those in drought_exp_clean</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># treating this like a regular data frame</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># renaming the columns</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">species_name =</span> x,</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">water_treatment =</span> group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Before plotting, LOOK AT THE PREDICTION DATA FRAME using <code>View(model4_predictions)</code> or by clicking on the object in the Environment.</p>
 </section>
@@ -712,7 +725,7 @@ F-statistic: 27.08 on 7 and 62 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> water_treatment,</span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> total_g,</span>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> water_treatment)) <span class="sc">+</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># first layer: jitter showing individual observations</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># first layer: jitter showing individual observations - run up to here before 2nd layer</span></span>
 <span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>,</span>
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">height =</span> <span class="dv">0</span>,</span>
 <span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">shape =</span> <span class="dv">21</span>,</span>
@@ -744,6 +757,7 @@ F-statistic: 27.08 on 7 and 62 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </div>
+<p>Now we render our document and commit our changes, and push to github: “finishing model fitting, diagnostics, and selection, writing about results, creating figure.” Refresh on GitHub.</p>
 </section>
 
 </main>
@@ -783,18 +797,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -826,7 +829,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -834,7 +857,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -931,7 +954,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

@@ -1,8 +1,6 @@
 ---
 title: "Workshop 8 KEY"
-subtitle: "insert your section time here"
-author: "insert your name here"
-date: "insert your name here"
+date: "2025-05-21"
 format:
   html:
     toc: true # use this to display a table of contents
@@ -11,25 +9,25 @@ execute:
   warning: false # use this to make sure warnings don't show up
 ---
 
-Data source: Valliere, Justin; Zhang, Jacqueline; Sharifi, M.; Rundel, Philip (2019). Data from: Can we condition native plants to increase drought tolerance and improve restoration success? [Dataset]. Dryad. [https://doi.org/10.5061/dryad.v0861f7](https://doi.org/10.5061/dryad.v0861f7)  
+Data source: Valliere, Justin; Zhang, Jacqueline; Sharifi, M.; Rundel, Philip (2019). Data from: Can we condition native plants to increase drought tolerance and improve restoration success? \[Dataset\]. Dryad. <https://doi.org/10.5061/dryad.v0861f7>
 
-In this workshop, we will answer the question: How do specific leaf area, water treatment, and species influence plant mass?  
+In this workshop, we will answer the question: How do specific leaf area, water treatment, and species influence plant mass?
 
-**Specific leaf area** is a continuous variable measured in cm^2^/g.  
+**Specific leaf area** is a continuous variable measured in cm^2^/g.
 
-**Water treatment** is a categorical variable (i.e. a *factor*) with 2 levels: drought stressed (DS) and well watered (WW).  
+**Water treatment** is a categorical variable (i.e. a *factor*) with 2 levels: drought stressed (DS) and well watered (WW).
 
-**Species** is a categorical variable (again, a *factor*) with 6 levels.  
+**Species** is a categorical variable (again, a *factor*) with 6 levels.
 
 | Species name                 | Species code | Common name        |
 |------------------------------|--------------|--------------------|
-| _Encelia californica_        | ENCCAL       | Bush sunflower     |  
-| _Eschsholzia californica_    | ESCCAL       | California poppy   | 
-| _Penstemon centranthifolius_ | PENCEN       | Scarlet bugler     | 
-| _Grindelia camporums_        | GRINCAM      | Gumweed            | 
-| _Salvia leucophylla_         | SALLEU       | Purple sage        | 
-| _Stipa pulchra_              | STIPUL       | Purple needlegrass | 
-| _Lotus scoparius_            | LOTSCO       | Deerweed           |
+| *Encelia californica*        | ENCCAL       | Bush sunflower     |
+| *Eschsholzia californica*    | ESCCAL       | California poppy   |
+| *Penstemon centranthifolius* | PENCEN       | Scarlet bugler     |
+| *Grindelia camporums*        | GRINCAM      | Gumweed            |
+| *Salvia leucophylla*         | SALLEU       | Purple sage        |
+| *Stipa pulchra*              | STIPUL       | Purple needlegrass |
+| *Lotus scoparius*            | LOTSCO       | Deerweed           |
 
 # 1. Set up
 
@@ -72,14 +70,13 @@ ww_col <- "#045CB4"
 theme_set(theme_bw())
 ```
 
-
 # 2. Clean data
 
 ```{r data-cleaning}
 # creating a clean data frame
-drought_exp_clean <- drought_exp |> # starting with the drought_exp object
+drought_exp_clean <- drought_exp |> # (delete pipe and run first) starting with the drought_exp object
   # cleaning column names
-  clean_names() |> 
+  clean_names() |> # (delete pipe and run first)
   # making a column of full species names
   mutate(species_name = case_match(
     species,
@@ -97,7 +94,8 @@ drought_exp_clean <- drought_exp |> # starting with the drought_exp object
     "WW" ~ "Well watered",
     "DS" ~ "Drought stressed"
   )) |> 
-  # making sure that species_name is a factor and ordering levels
+  # making sure that species_name is a factor and ordering levels (run str(drought_exp_clean))
+  # ensure first level should be Lotus scoparius
   mutate(species_name = as_factor(species_name),
          species_name = fct_relevel(species_name,
                                     "Lotus scoparius",
@@ -126,15 +124,18 @@ And displaying some rows from the data frame:
 
 ```{r showing-data-frame-rows}
 slice_sample(
-  drought_exp_clean, # data frame
-  n = 10 # showing 10 rows
+  drought_exp_clean, # data frame to display
+  n = 10 # specifying 10 rows to display
 )
 ```
 
+Now we can commit our changes. Commit message: "edited subititle, author, date info and added comments to cleaning code." Go to github and refresh. Should see most recent change.
 
 # 3. Visualizing data
 
-## What is the relationship between SLA and total mass?  
+## What is the relationship between SLA and total mass?
+
+We are visualizing the relationship between plant mass, our response variable, and our 3 predictor variables which are specific leaf area, water treatments and species. We can first visualize the relationship between specific leaf area and mass by creating a simple scatterplot:
 
 ```{r sla}
 #| fig-width: 10
@@ -151,7 +152,11 @@ ggplot(data = drought_exp_clean,
        title = "As SLA increases, total mass increases")
 ```
 
+We can see specific leaf area on the x axis and total mass on the y axis. Each point here represents a single plant from the experiment. \[Type in the title as seen above\].
+
 ## What are the differences in total mass between water treatments?
+
+Now we can go to our next figure to visualize the differences in total mass between water treatments. So this will be a standard jitter plot with no jitter along the y axis because we don't want the points to jitter along the y axis. We'll also add a summary to calculate the mean mass in each water treatment, so that's the central tendency that we're going to be comparing.
 
 ```{r water-treatment}
 #| fig-width: 10
@@ -181,7 +186,11 @@ ggplot(data = drought_exp_clean,
   theme(legend.position = "none")
 ```
 
+Running the code, we can see our plot here. Again, each point represents a single observation which is a single plant from the experiment. The large point represents the mean, so this is the mean mass in drought stress treatments across species across species and across SLA. We'll say this is somewhere a little higher than 0.2. And the average mass in well-watered treatments is somewhere around 0.34 or 0.35.
+
 ## What are the differences in total mass between species?
+
+Again, we're going to create a jitter plot and calculate mean mass between each species. We're also going to add this new function called scale_x_discrete to make sure our axis labels wrap nicer since scientific names can get long.
 
 ```{r species}
 #| fig-width: 10
@@ -201,7 +210,7 @@ ggplot(data = drought_exp_clean,
                fun = mean,
                size = 4) +
   # making sure that axis labels wrap nicely
-  scale_x_discrete(labels = label_wrap(10)) +
+  scale_x_discrete(labels = label_wrap(10)) + # this function is from the scales package and will wrap based on 10 characters or pixels
   # setting colors manually
   scale_color_manual(values = c(
     "Lotus scoparius" = lotsco_col,
@@ -220,33 +229,37 @@ ggplot(data = drought_exp_clean,
   theme(legend.position = "none")
 ```
 
+In the plot you can see that the species are in order of mean mass because we had previously set our factor levels to do that. So back to the question here, from the plot it seems like the species do differ in average mass (FILL IN TITLE). Now we can save our changes and commit and push them to github. Commit message: added titles to visualizations. (Check GitHub).
+
 # 4. Fitting models
+
+Here we're going to fit some models - 8 in total. The null model has no predictors in it, the saturated model is model #1 with all predictors, and then all of the other models have some combination of predictor variables: specific leaf area and water treatment, leaf area and species, water treatment and species, and then each of those predictors individually. When you're designing models, you should think about what combinations make sense. Usually these are the null, full and the different combinations of predictors.
 
 8 models total:
 
-| Model number | SLA | Water treatment | Species | Predictor list              |  
-|:------------:|:---:|:---------------:|:-------:|-----------------------------|  
-| 0            |     |                 |         | no predictors (null model)  |
-| 1            |  X  |       X         |    X    | all predictors (full model) | 
-| 2            |  X  |       X         |         | SLA and water treatment     |   
-| 3            |  X  |                 |    X    | SLA and species             |    
-| 4            |     |       X         |    X    | water treatment and species |    
-| 5            |  X  |                 |         | SLA                         |    
-| 6            |     |       X         |         | water treatment             |    
-| 7            |     |                 |    X    | species                     |
+| Model number | SLA | Water treatment | Species | Predictor list              |
+|:------------:|:---:|:---------------:|:-------:|-----------------------------|
+|      0       |     |                 |         | no predictors (null model)  |
+|      1       |  X  |        X        |    X    | all predictors (full model) |
+|      2       |  X  |        X        |         | SLA and water treatment     |
+|      3       |  X  |                 |    X    | SLA and species             |
+|      4       |     |        X        |    X    | water treatment and species |
+|      5       |  X  |                 |         | SLA                         |
+|      6       |     |        X        |         | water treatment             |
+|      7       |     |                 |    X    | species                     |
 
 ## Model fitting
 
 ```{r model-fitting}
 # model 0: null model
-model0 <- lm(
-  total_g ~ 1, # formula
+model0 <- lm( #lm is the function for the linear model
+  total_g ~ 1, # formula: total grams as a function of 1 - 1 denotes no predictors
   data = drought_exp_clean # data frame
 )
 
 # model 1: all predictors
 model1 <- lm(
-  total_g ~ sla + water_treatment + species_name, # formula
+  total_g ~ sla + water_treatment + species_name, # formula: total grams as a function of all predictor variables
   data = drought_exp_clean # data frame
 )
 
@@ -269,32 +282,41 @@ model4 <- lm(
 )
 
 # model 5: SLA
-model5 <- lm(total_g ~ sla,
-             data = drought_exp_clean)
+model5 <- lm(
+  total_g ~ sla,
+  data = drought_exp_clean)
 
 # model 6: water treatment
-model6 <- lm(total_g ~ water_treatment,
-             data = drought_exp_clean)
+model6 <- lm(
+  total_g ~ water_treatment,
+  data = drought_exp_clean)
 
 # model 7: species
-model7 <- lm(total_g ~ species_name,
-             data = drought_exp_clean)
+model7 <- lm(
+  total_g ~ species_name,
+  data = drought_exp_clean)
 ```
+
+This is tedious and you do have to write a lot out but it's because we are thinking deliberately about which predictors are in each model. So for example, what you are saying in model 6 is that only water treatment predicts plant mass. Similarly, model 5 is saying that only specific leaf area and no other variables are predictors of plant mass. Model 3 adds species as a predictor variable, which is basically saying, if you knew species AND specific leaf area, you could predict plant mass - water treatment doesn't matter.
 
 ## Model diagnostics
 
+We can the check the diagnostics for all of these models.
+
 ```{r model-diagnostics}
-par(mfrow = c(2,2))
-plot(model1)
-plot(model2)
-plot(model3)
+par(mfrow = c(2,2)) # creates 2x2 grid to display diagnistic plots
+plot(model1) # looks pretty good (no outliers and normal residuals)
+plot(model2) # looks pretty good
+plot(model3) # looks pretty good
 plot(model4) # residuals look ok for best model
-plot(model5)
-plot(model6)
-plot(model7)
+plot(model5) # looks pretty good
+plot(model6) # looks pretty good
+plot(model7) # looks pretty good
 ```
 
 ## Model selection
+
+We're going to now select the best model using the AICc function from the MuMIn package. Inside this function we'll just list all of the models.
 
 ```{r model-selection}
 AICc(model1,
@@ -304,7 +326,7 @@ AICc(model1,
      model5,
      model6,
      model7,
-     model0) |> 
+     model0) |> # run then pipe to show how to arrange in increasing order to make it easier to glean results 
   # arranging output in descending order of AIC
   arrange(AICc)
 ```
@@ -317,29 +339,38 @@ summary(model4)
 # reference level for species: Lotus scoparius
 ```
 
-## Stop and think: what does this model mean?  
+If we run this line of code and look at the output, we can figure out what the references are. For categorical variables, you are basically turning your levels and the factors into dummy variables, or indicator/binary variables where each level in the factor receives a unique combination of zeros and ones to represent the level. So the reference level is always the level that doesn't appear in your summary. So in this case in water treatment, what you see in the water treatment output is well watered. So given the two options of water treatments, the reference for water treatment is drought stressed because it does not appear in the summary (TYPE THE COMMENT). Similarly, you can figure out the reference for species by looking at which species is missing. And that is Lotus scoparius (TYPE THE COMMENT).
+
+## Stop and think: what does this model mean?
 
 **What is the best model?**
 
-The best model that predicts total plant mass (g) includes water treatment and species (F(7, 62) = 27.08, p < 0.001, $\alpha$ = 0.05), but not SLA.  
+The best model that predicts total plant mass (g) includes water treatment and species (F(7, 62) = 27.08, p \< 0.001, $\alpha$ = 0.05), but not SLA.
+
+*\[We can use the summary outputs here. 7/62 df ratio, 27.08 f statistic\]*
 
 **How much variation in the response (total mass, in grams) does this model explain?**
 
-This model explained 73% (adjusted R^2^) of the variation in total mass.
+This model explained 73% (adjusted R^2^) of the variation in total mass. *\[R² is "R\^2\^"\]*
 
 **How do we interpret the effects of the predictors on the response variable (again, total mass in grams)?**
 
-On average, plant masses in drought stressed conditions were 0.12 $\pm$ 0.04 g less than plant masses in well watered conditions across species.  
+On average, plant masses in drought stressed conditions were 0.12 *\[\$\\pm\$ is plus/minus\]* 0.02 g less than plant masses in well watered conditions across species. *\[from water_treatmentWell watered line\]*
 
-Across water treatments, all species have different (and higher) masses than _Lotus scoparius_ except _Penstemon centranthifolius_.
+Across water treatments, all species have different (and higher) masses than *Lotus scoparius* except *Penstemon centranthifolius*. *\[Based on model summary where estimate is really small and p-value is not significant\]*
+
+So we were able to summarize our results in 4 sentences and next we can create our predictions.
 
 # 5. Model predictions
+
+So we're going to generate our predictions for model 4 by first creating a new object.
 
 ```{r model-predictions}
 model4_predictions <- ggpredict(
   model4, # model object
   terms = c("species_name", "water_treatment") # predictors
-) |> 
+) |> # RUN THIS NOW WITHOUT PIPE - what we should be able to see is a new dataframe with predicted mean, standard error, low and high CI's and the groups drought stressed and well watered
+# Next I want to rename the columns to match those in drought_exp_clean
   # treating this like a regular data frame
   # renaming the columns
   rename(species_name = x,
@@ -360,7 +391,7 @@ ggplot(data = drought_exp_clean,
        aes(x = water_treatment,
            y = total_g,
            color = water_treatment)) +
-  # first layer: jitter showing individual observations
+  # first layer: jitter showing individual observations - run up to here before 2nd layer
   geom_jitter(width = 0.1,
               height = 0,
               shape = 21,
@@ -386,3 +417,4 @@ ggplot(data = drought_exp_clean,
   theme(legend.position = "none")
 ```
 
+Now we render our document and commit our changes, and push to github: "finishing model fitting, diagnostics, and selection, writing about results, creating figure." Refresh on GitHub.
