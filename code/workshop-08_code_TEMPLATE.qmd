@@ -147,7 +147,7 @@ ggplot(data = drought_exp_clean,
   # relabeling axes and adding a title
   labs(x = expression(Specific~leaf~area~(cm^2/g)),
        y = "Total mass (g)",
-       title = "INSERT YOUR TITLE HERE")
+       title = "As SLA increases, total mass increases")
 ```
 
 ## What are the differences in total mass between water treatments?
@@ -175,7 +175,7 @@ ggplot(data = drought_exp_clean,
   # changing axis labels and title
   labs(x = "Water treatment",
        y = "Total mass (g)",
-       title = "INSERT YOUR TITLE HERE") +
+       title = "Average total mass is higher in well-watered treatment") +
   # taking out legend
   theme(legend.position = "none")
 ```
@@ -214,7 +214,7 @@ ggplot(data = drought_exp_clean,
   # labelling axes and title
   labs(x = "Species",
        y = "Total mass (g)",
-       title = "INSERT YOUR TITLE HERE") +
+       title = "Species differ in mean mass") +
   # getting rid of legend
   theme(legend.position = "none")
 ```
