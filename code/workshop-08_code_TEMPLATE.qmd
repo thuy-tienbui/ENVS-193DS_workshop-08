@@ -1,8 +1,8 @@
 ---
 title: "Workshop 8 TEMPLATE"
-subtitle: "insert your section time here"
-author: "insert your name here"
-date: "insert your name here"
+subtitle: "5pm Workshop"
+author: "Thuy-Tien Bui"
+date: "2025-05-22"
 format:
   html:
     toc: true # use this to display a table of contents
@@ -44,7 +44,10 @@ library(ggeffects) # getting model predictions
 library(MuMIn) # model selection
 
 # read in your data here
-
+drought_exp <- read_xlsx(
+  here("data", "Valliere_etal_EcoApps_data.xlsx"),
+  sheet = "First Harvest"
+)
 ```
 
 Storing some colors to use in visualizations, and setting a common `ggplot` theme for all plots:
@@ -71,11 +74,11 @@ theme_set(theme_bw())
 # 2. Clean data
 
 ```{r data-cleaning}
-# INSERT COMMENT HERE
+# creating a clean data frame
 drought_exp_clean <- drought_exp |> # INSERT COMMENT HERE
-  # INSERT COMMENT HERE
+  # cleaning column names
   clean_names() |> 
-  # INSERT COMMENT HERE
+  # making a column of full species names
   mutate(species_name = case_match(
     species,
     "ENCCAL" ~ "Encelia californica", # bush sunflower
@@ -86,13 +89,14 @@ drought_exp_clean <- drought_exp |> # INSERT COMMENT HERE
     "STIPUL" ~ "Stipa pulchra", # purple needlegrass
     "LOTSCO" ~ "Lotus scoparius" # deerweed
   )) |> 
-  # INSERT COMMENT HERE
+  # make a column of full drought treatment names
   mutate(water_treatment = case_match(
     water,
     "WW" ~ "Well watered",
     "DS" ~ "Drought stressed"
   )) |> 
-  # INSERT COMMENT HERE
+  # making sure that species_name is a factor
+  # first level should be Lotus scoparius
   mutate(species_name = as_factor(species_name),
          species_name = fct_relevel(species_name,
                                     "Lotus scoparius",
@@ -102,12 +106,12 @@ drought_exp_clean <- drought_exp |> # INSERT COMMENT HERE
                                     "Stipa pulchra",
                                     "Eschscholzia californica",
                                     "Grindelia camporum")) |> 
-  # INSERT COMMENT HERE
+  # ensure water_treatment is a factor and order the levels
   mutate(water_treatment = as_factor(water_treatment),
          water_treatment = fct_relevel(water_treatment,
                                        "Drought stressed",
                                        "Well watered")) |> 
-  # INSERT COMMENT HERE
+  # selecting columns
   select(species_name, water_treatment, sla, total_g)
 ```
 
@@ -121,8 +125,8 @@ And displaying some rows from the data frame:
 
 ```{r showing-data-frame-rows}
 slice_sample(
-  drought_exp_clean, # INSERT COMMENT HERE
-  n = 10 # INSERT COMMENT HERE
+  drought_exp_clean, # data frame to display
+  n = 10 # specifying 10 rows to display
 )
 ```
 
