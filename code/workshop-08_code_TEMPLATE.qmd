@@ -244,63 +244,108 @@ model0 <- lm(
 )
 
 # model 1: all predictors
-# INSERT MODEL CODE HERE
+model1 <- lm(
+  total_g ~ sla + water_treatment + species_name, # formula
+  data = drought_exp_clean
+)
 
 # model 2: SLA and water treatment
-# INSERT MODEL CODE HERE
+model2 <- lm(
+  total_g ~ sla + water_treatment,
+  data = drought_exp_clean
+)
 
 # model 3: SLA and species
-# INSERT MODEL CODE HERE
+model3 <- lm(
+  total_g ~ sla + species_name,
+  data = drought_exp_clean
+)
 
 # model 4: water treatment and species
-# INSERT MODEL CODE HERE
+model4 <- lm(
+  total_g ~ water_treatment + species_name,
+  data = drought_exp_clean
+)
 
 # model 5: SLA
-# INSERT MODEL CODE HERE
+model5 <- lm(
+  total_g ~ sla,
+  data = drought_exp_clean
+)
 
 # model 6: water treatment
-# INSERT MODEL CODE HERE
+model6 <- lm(
+  total_g ~ water_treatment,
+  data = drought_exp_clean
+)
 
 # model 7: species
-# INSERT MODEL CODE HERE
+model7 <- lm(
+  total_g ~ species_name,
+  data = drought_exp_clean
+)
 ```
 
 ## Model diagnostics
 
 ```{r model-diagnostics}
-# INSERT MODEL DIAGNOSTICS CODE HERE
+par(mfrow = c(2,2)) # creates a 2x2 grid to display diagnostic plots
+plot(model1)
+plot(model2)
+plot(model3)
+plot(model4)
+plot(model5)
+plot(model6)
+plot(model7)
+# all residuals look normal and no outliers
 ```
 
 ## Model selection
 
 ```{r model-selection}
-# INSERT MODEL SELECTION CODE HERE
+AICc(model1,
+     model2,
+     model3,
+     model4,
+     model5,
+     model6,
+     model7,
+     model0) |> 
+  arrange(AICc)
 ```
 
 Look at the model summary:
 
 ```{r model-summary}
-# INSERT MODEL SUMMARY CODE HERE
+summary(model4)
+# reference level for water_treatment: Drought stressed
+# reference level for species: Lotus scoparius
 ```
 
 ## Stop and think: what does this model mean?  
 
 **What is the best model?**
-
+The best model that predicts total plant mass (g) includes water treatment and species (F(7,62)=27.08, p < 0.001, $\alpha$ = 0.05), but not SLA.
  
 
 **How much variation in the response (total mass, in grams) does this model explain?**
-
+The model explained 73% (adjusted R^2^) of the variation in total mass.
 
 
 **How do we interpret the effects of the predictors on the response variable (again, total mass in grams)?**
+On average, plant masses in drought stressed conditions were 0.12 $\pm$ 0.02 g less than plant masses in well watered conditions across species.
 
+Across water treatments, all species have different (and higher) masses than *Lotus scoparius* except *Penstemon centranthifolius*.
 
 
 # 5. Model predictions
 
 ```{r model-predictions}
-# INSERT MODEL PREDICTIONS CODE HERE
+model4_predictions <- ggpredict(
+  model4, #model object
+  terms = c("species_name", "water_treatment")) |> #predictors
+  rename(species_name = x,
+         water_treatment = group)
 ```
 
 Before plotting, LOOK AT THE PREDICTION DATA FRAME using `View(model4_predictions)` or by clicking on the object in the Environment.
